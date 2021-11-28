@@ -3,7 +3,7 @@ package com.epam.ball.exceptions;
 import java.io.IOException;
 
 public class DataException extends IOException {
-    private String filePath;
+    private final String filePath;
 
     public DataException(String message, Throwable exception, String filePath) {
         super(message, exception);

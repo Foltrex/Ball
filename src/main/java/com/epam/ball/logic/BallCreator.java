@@ -1,10 +1,13 @@
-package com.epam.task1;
+package com.epam.ball.logic;
+
+import com.epam.ball.entity.Ball;
+import com.epam.ball.entity.Point3D;
 
 import java.util.StringTokenizer;
 
-public class SphereCreator {
+public class BallCreator {
 
-    public Sphere create(String line) {
+    public Ball create(String line) {
         StringTokenizer stringTokenizer = new StringTokenizer(line);
 
         final String X = stringTokenizer.nextToken();
@@ -20,8 +23,8 @@ public class SphereCreator {
         double radius = Double.parseDouble(RADIUS);
 
         Point3D center = new Point3D(x, y, z);
-        Sphere sphere = new Sphere(center, radius);
+        Ball ball = new Ball(center, radius);
 
-        return sphere;
+        return ball;
     }
 }

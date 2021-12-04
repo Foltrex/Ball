@@ -1,8 +1,8 @@
 package com.epam.ball.entity;
 
 public class Ball {
-    private final Point3D center;
-    private final double radius;
+    private Point3D center;
+    private double radius;
 
     public Ball(Point3D center, double radius) {
         this.center = center;
@@ -36,7 +36,13 @@ public class Ball {
         return hash;
     }
 
+    public void setCenter(Point3D center) {
+        this.center = center;
+    }
 
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
 
     public Point3D getCenter() {
         return center;

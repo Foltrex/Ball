@@ -13,18 +13,6 @@ public class CalculatorTest {
     // given
     private final Calculator calculator = new Calculator();
 
-    @Test
-    public void testIsBallShouldCheckBallCorrectness() {
-        // given
-        Point3D ballCenter = new Point3D(0, 0, 0);
-        double radius = 12;
-
-        // when
-        boolean isBall = calculator.isBall(ballCenter, radius);
-
-        // then
-        Assert.assertTrue(isBall);
-    }
 
     @Test
     public void testCalculateSurfaceAreaShouldCalculateSurfaceAreaWhenBallValid() {

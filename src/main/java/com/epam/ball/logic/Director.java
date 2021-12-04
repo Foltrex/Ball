@@ -8,17 +8,18 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Director {
     private static final Logger logger = Logger.getLogger(Director.class.getName());
 
     private final DataReader reader;
-    private final BallValidator ballValidator;
+    private final BallLineValidator ballLineValidator;
     private final BallCreator creator;
 
-    public Director(DataReader reader, BallValidator ballValidator, BallCreator ballCreator) {
+    public Director(DataReader reader, BallLineValidator ballLineValidator, BallCreator ballCreator) {
         this.reader = reader;
-        this.ballValidator = ballValidator;
+        this.ballLineValidator = ballLineValidator;
         this.creator = ballCreator;
     }
 
@@ -28,14 +29,21 @@ public class Director {
         List<String> lines = reader.read(path);
         List<Ball> balls = new ArrayList<>();
         for (String line: lines) {
-            if (ballValidator.isValidLine(line)) {
+            if (ballLineValidator.isValidLine(line)) {
                 logger.info("Valid number string: " + line);
-                Ball ball = creator.create(line);
-                balls.add(ball);
+                Optional<Ball> optionalBall = creator.create(line);
+                addOptionalToCollectionWhenItPresent(balls, optionalBall);
             }
         }
 
         logger.info("List of created balls:\n" + balls);
         return balls;
+    }
+
+    private void addOptionalToCollectionWhenItPresent(List<Ball> balls, Optional<Ball> optionalBall) {
+        if (optionalBall.isPresent()) {
+            Ball ball = optionalBall.get();
+            balls.add(ball);
+        }
     }
 }

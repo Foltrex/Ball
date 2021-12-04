@@ -9,12 +9,6 @@ import org.apache.log4j.Logger;
 public class Calculator {
     private static final Logger logger = Logger.getLogger(Calculator.class.getName());
 
-    public boolean isBall(Point3D center, double radius) {
-        logger.debug("Argument ball center: " + center + '\n' +
-                     "Argument radius: " + radius);
-        return radius > 0;
-    }
-
     public double calculateSurfaceArea(Ball ball) {
         logger.debug("Argument ball: " + ball);
         final double radius = ball.getRadius();

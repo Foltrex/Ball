@@ -24,4 +24,5 @@ hs_err_pid*
 logs
 .idea
 task text.rtf
+log_time.*
 target

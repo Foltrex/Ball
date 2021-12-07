@@ -27,9 +27,9 @@ public class DirectorTest {
     @Test
     public void testReadShouldReadWhenLinesCorrect() throws DataException {
         // given
-        DataReader dataReader       = Mockito.mock(DataReader.class);
+        DataReader dataReader               = Mockito.mock(DataReader.class);
         BallLineValidator ballLineValidator = Mockito.mock(BallLineValidator.class);
-        BallCreator ballCreator     = Mockito.mock(BallCreator.class);
+        BallCreator ballCreator             = Mockito.mock(BallCreator.class);
 
         Mockito.when(dataReader.read(VALID_PATH)).thenReturn(Arrays.asList("1.0  2.0  3.0  4.0", "5.0  6.0  7.0  8.0"));
         Mockito.when(ballLineValidator.isValidLine(anyString())).thenReturn(true);

@@ -8,26 +8,26 @@ import java.util.Optional;
 import java.util.StringTokenizer;
 
 public class BallCreator {
-    private static final Logger logger = Logger.getLogger(BallCreator.class.getName());
+    private static final Logger logger = Logger.getLogger(BallCreator.class);
 
     public Optional<Ball> create(String line) {
         logger.debug("Argument line: " + line);
 
         StringTokenizer stringTokenizer = new StringTokenizer(line);
 
-        final String X = stringTokenizer.nextToken();
-        final double x = Double.parseDouble(X);
+        String xToken = stringTokenizer.nextToken();
+        double x = Double.parseDouble(xToken);
 
-        final String Y = stringTokenizer.nextToken();
-        final double y = Double.parseDouble(Y);
+        String yToken = stringTokenizer.nextToken();
+        double y = Double.parseDouble(yToken);
 
-        final String Z = stringTokenizer.nextToken();
-        final double z = Double.parseDouble(Z);
+        String zToken = stringTokenizer.nextToken();
+        double z = Double.parseDouble(zToken);
 
-        final String RADIUS  = stringTokenizer.nextToken();
-        final double radius = Double.parseDouble(RADIUS);
+        String radiusToken  = stringTokenizer.nextToken();
+        double radius = Double.parseDouble(radiusToken);
 
-        final Point3D center = new Point3D(x, y, z);
+        Point3D center = new Point3D(x, y, z);
 
         if (radius > 0) {
             Ball ball = new Ball(center, radius);

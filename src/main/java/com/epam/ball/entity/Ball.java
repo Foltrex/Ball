@@ -9,6 +9,23 @@ public class Ball {
         this.radius = radius;
     }
 
+    public void setCenter(Point3D center) {
+        this.center = center;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public Point3D getCenter() {
+        return center;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -34,22 +51,6 @@ public class Ball {
         hash = 17 * hash + radiusHash;
 
         return hash;
-    }
-
-    public void setCenter(Point3D center) {
-        this.center = center;
-    }
-
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-    public Point3D getCenter() {
-        return center;
-    }
-
-    public double getRadius() {
-        return radius;
     }
 
     @Override

@@ -13,8 +13,7 @@ import org.junit.runners.Suite;
         CalculatorTest.class,
         DataReaderTest.class,
         DirectorTest.class,
-        BallStoreTest.class,
-        BallIdentifiableTest.class
+        BallStoreTest.class
 
 })
 public class BallTestSuite {

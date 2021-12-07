@@ -33,14 +33,13 @@ public class BallStoreTest {
         Field calculatorField = BallStore.class.getDeclaredField("calculator");
         calculatorField.setAccessible(true);
         calculatorField.set(instance, calculator);
+        Mockito.when(calculator.calculateVolume(isA(BallIdentifiable.class))).thenReturn(33.510);
+        Mockito.when(calculator.calculateSurfaceArea(isA(BallIdentifiable.class))).thenReturn(50.265);
 
         Map<Integer, Parameters> parameters = Mockito.mock(Map.class);
         Field parametersField = BallStore.class.getDeclaredField("parameters");
         parametersField.setAccessible(true);
         parametersField.set(instance, parameters);
-
-        Mockito.when(calculator.calculateVolume(isA(BallIdentifiable.class))).thenReturn(33.510);
-        Mockito.when(calculator.calculateSurfaceArea(isA(BallIdentifiable.class))).thenReturn(50.265);
         Mockito.when(parameters.put(isA(Integer.class), isA(Parameters.class))).thenReturn(null);
 
 

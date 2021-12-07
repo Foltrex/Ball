@@ -7,25 +7,25 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class Calculator {
-    private static final Logger logger = Logger.getLogger(Calculator.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Calculator.class);
 
     public double calculateSurfaceArea(Ball ball) {
-        logger.debug("Argument ball: " + ball);
+        LOGGER.debug("Argument ball: " + ball);
         final double radius = ball.getRadius();
         return 4 * radius * radius * Math.PI;
     }
 
     public double calculateVolume(Ball ball) {
-        logger.debug("Argument ball: " + ball);
+        LOGGER.debug("Argument ball: " + ball);
         final double radius = ball.getRadius();
         return 4 * radius * radius * radius * Math.PI / 3;
     }
 
-    public double calculateSphericalSegmentVolume(Ball ball, double h) {
-        logger.debug("Argument ball: " + ball + '\n' +
-                     "Argument height: " + h);
+    public double calculateSphericalSegmentVolume(Ball ball, double hight) {
+        LOGGER.debug("Argument ball: " + ball + '\n' +
+                     "Argument height: " + hight);
         final double radius = ball.getRadius();
-        return h * h * (3 * radius - h) / 3 * Math.PI;
+        return hight * hight * (3 * radius - hight) / 3 * Math.PI;
     }
 
     /**
@@ -33,31 +33,30 @@ public class Calculator {
      * because the ball can intersect several axes at once
      */
     public double calculateVolumeRatio(Ball ball, Plane plane) throws BallNotCrossPlaneException {
-        logger.debug("Argument ball: " + ball + '\n' +
+        LOGGER.debug("Argument ball: " + ball + '\n' +
                      "Argument plane: " + plane);
 
         if (!isCrossingPlane(ball, plane)) {
-            logger.log(Level.WARN, "The ball doesn't intersect with the plane");
-            throw new BallNotCrossPlaneException("The ball doesn't intersect with the plane", ball, plane.name());
+            throw new BallNotCrossPlaneException("The ball doesn't intersect with the plane");
         }
 
         final double radius = ball.getRadius();
         final Point3D ballCenter = ball.getCenter();
 
-        final double h = Math.abs(radius - plane.getDistance(ballCenter));
+        final double hight = Math.abs(radius - plane.getDistance(ballCenter));
 
-        double firstSphericalSegmentVolume = calculateSphericalSegmentVolume(ball, h);
+        double firstSphericalSegmentVolume = calculateSphericalSegmentVolume(ball, hight);
         double secondSphericalSegmentVolume = calculateVolume(ball) - firstSphericalSegmentVolume;
 
         double volumeRatio = firstSphericalSegmentVolume / secondSphericalSegmentVolume;
 
-        logger.info(String.format("Volume ratio: %.3f", volumeRatio));
+        LOGGER.info(String.format("Volume ratio: %.3f", volumeRatio));
         return volumeRatio;
     }
 
 
     public boolean isTouchingPlane(Ball ball) {
-        logger.debug("Argument ball: " + ball);
+        LOGGER.debug("Argument ball: " + ball);
 
         final Point3D ballCenter = ball.getCenter();
         final double radius = ball.getRadius();
@@ -70,7 +69,7 @@ public class Calculator {
     }
 
     public boolean isCrossingPlane(Ball ball, Plane plane) {
-        logger.debug("Argument ball: " + ball + '\n' +
+        LOGGER.debug("Argument ball: " + ball + '\n' +
                      "Argument plane: " + plane);
 
         final Point3D ballCenter = ball.getCenter();
@@ -79,7 +78,8 @@ public class Calculator {
         return plane.getDistance(ballCenter) <= radius;
     }
 
+    private final double EPSILON = 1e-6;
     private boolean isEqual(double x, double y) {
-        return (x - y) < 0.000001;
+        return (x - y) < EPSILON;
     }
 }

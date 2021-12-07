@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Director {
-    private static final Logger logger = Logger.getLogger(Director.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Director.class);
 
     private final DataReader reader;
     private final BallLineValidator ballLineValidator;
@@ -24,26 +24,22 @@ public class Director {
     }
 
     public List<Ball> read(String path) throws DataException {
-        logger.debug("Argument path: " + path);
+        LOGGER.debug("Argument path: " + path);
 
         List<String> lines = reader.read(path);
         List<Ball> balls = new ArrayList<>();
         for (String line: lines) {
             if (ballLineValidator.isValidLine(line)) {
-                logger.info("Valid number string: " + line);
+                LOGGER.info("Valid number string: " + line);
                 Optional<Ball> optionalBall = creator.create(line);
-                addOptionalToCollectionWhenItPresent(balls, optionalBall);
+                if (optionalBall.isPresent()) {
+                    Ball ball = optionalBall.get();
+                    balls.add(ball);
+                }
             }
         }
 
-        logger.info("List of created balls:\n" + balls);
+        LOGGER.info("List of created balls:\n" + balls);
         return balls;
-    }
-
-    private void addOptionalToCollectionWhenItPresent(List<Ball> balls, Optional<Ball> optionalBall) {
-        if (optionalBall.isPresent()) {
-            Ball ball = optionalBall.get();
-            balls.add(ball);
-        }
     }
 }

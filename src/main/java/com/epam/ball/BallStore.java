@@ -23,7 +23,6 @@ public class BallStore implements Observer<BallIdentifiable> {
 
     public static BallStore getInstance() {
         if (instance == null) {
-            //System.out.println("I'm null");
             instance = new BallStore();
         }
         return instance;

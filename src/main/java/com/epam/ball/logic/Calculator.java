@@ -3,7 +3,6 @@ package com.epam.ball.logic;
 import com.epam.ball.entity.Ball;
 import com.epam.ball.entity.Point3D;
 import com.epam.ball.exceptions.BallNotCrossPlaneException;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class Calculator {
@@ -43,7 +42,7 @@ public class Calculator {
         final double radius = ball.getRadius();
         final Point3D ballCenter = ball.getCenter();
 
-        final double hight = Math.abs(radius - plane.getDistance(ballCenter));
+        final double hight = Math.abs(radius - plane.getDistanceTo(ballCenter));
 
         double firstSphericalSegmentVolume = calculateSphericalSegmentVolume(ball, hight);
         double secondSphericalSegmentVolume = calculateVolume(ball) - firstSphericalSegmentVolume;
@@ -75,7 +74,7 @@ public class Calculator {
         final Point3D ballCenter = ball.getCenter();
         final double radius = ball.getRadius();
 
-        return plane.getDistance(ballCenter) <= radius;
+        return plane.getDistanceTo(ballCenter) <= radius;
     }
 
     private final double EPSILON = 1e-6;

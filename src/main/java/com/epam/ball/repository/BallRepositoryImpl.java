@@ -11,17 +11,20 @@ public class BallRepositoryImpl implements BallRepository {
 
     @Override
     public void add(BallIdentifiable ball) {
-
+        Integer ballId = ball.getId();
+        store.put(ballId, ball);
     }
 
     @Override
     public void delete(BallIdentifiable ball) {
-        
+        Integer ballId = ball.getId();
+        store.remove(ballId, ball);
     }
 
     @Override
     public void update(BallIdentifiable ball) {
-
+        Integer ballId = ball.getId();
+        store.put(ballId, ball);
     }
 
     @Override
@@ -36,7 +39,9 @@ public class BallRepositoryImpl implements BallRepository {
     }
 
     @Override
-    public List<BallIdentifiable> sort(Comparator<BallIdentifiable> ball) {
-        return null;
+    public List<BallIdentifiable> sort(Comparator<BallIdentifiable> comparator) {
+        List<BallIdentifiable> result = new ArrayList<>(store.values());
+        result.sort(comparator);
+        return result;
     }
 }

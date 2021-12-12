@@ -26,4 +26,4 @@ logs
 task text.rtf
 log_time.*
 target
-.DS_Store
+*.DS_Store

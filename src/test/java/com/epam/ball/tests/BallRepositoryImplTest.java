@@ -3,6 +3,7 @@ package com.epam.ball.tests;
 import com.epam.ball.BallIdentifiable;
 import com.epam.ball.entity.Point3D;
 import com.epam.ball.repository.*;
+import com.epam.ball.repository.comparators.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -23,7 +24,6 @@ public class BallRepositoryImplTest {
         BallRepository repository = new BallRepositoryImpl();
         repository.add(ballFirst);
         repository.add(ballSecond);
-        BallIdentifiable ball = Mockito.mock(BallIdentifiable.class);
         SurfaceAreaRangeSpecification specification = Mockito.mock(SurfaceAreaRangeSpecification.class);
         Mockito.when(specification.specified(ballFirst)).thenReturn(false);
         Mockito.when(specification.specified(ballSecond)).thenReturn(true);
@@ -78,7 +78,7 @@ public class BallRepositoryImplTest {
         BallRepository repository = new BallRepositoryImpl();
         repository.add(ballSecond);
         repository.add(ballFirst);
-        Comparator<BallIdentifiable> comparatorById = Mockito.mock(Comparator.class);
+        Comparator<BallIdentifiable> comparatorById = Mockito.mock(BallIdComparator.class);
         Mockito.when(comparatorById.compare(ballFirst, ballSecond)).thenReturn(-1);
         List<BallIdentifiable> expectedQuery = Arrays.asList(ballFirst, ballSecond);
 
@@ -95,7 +95,7 @@ public class BallRepositoryImplTest {
         BallRepository repository = new BallRepositoryImpl();
         repository.add(ballSecond);
         repository.add(ballFirst);
-        Comparator<BallIdentifiable> comparatorByRadius = Mockito.mock(Comparator.class);
+        Comparator<BallIdentifiable> comparatorByRadius = Mockito.mock(BallRadiusComparator.class);
         Mockito.when(comparatorByRadius.compare(ballFirst, ballSecond)).thenReturn(-1);
         List<BallIdentifiable> expectedQuery = Arrays.asList(ballFirst, ballSecond);
 
@@ -107,12 +107,12 @@ public class BallRepositoryImplTest {
     }
 
     @Test
-    public void testShouldSortDataByXCoordinateWhenDataIsValid() {
+    public void testSortShouldSortDataByXCoordinateWhenDataIsValid() {
         // given
         BallRepository repository = new BallRepositoryImpl();
         repository.add(ballSecond);
         repository.add(ballFirst);
-        Comparator<BallIdentifiable> comparatorByXCoordinate = Mockito.mock(Comparator.class);
+        Comparator<BallIdentifiable> comparatorByXCoordinate = Mockito.mock(BallXCoordinateComparator.class);
         Mockito.when(comparatorByXCoordinate.compare(ballFirst, ballSecond)).thenReturn(-1);
         List<BallIdentifiable> expectedQuery = Arrays.asList(ballFirst, ballSecond);
 
@@ -124,12 +124,12 @@ public class BallRepositoryImplTest {
     }
 
     @Test
-    public void testShouldSortDataByYCoordinateWhenDataIsValid() {
+    public void testSortShouldSortDataByYCoordinateWhenDataIsValid() {
         // given
         BallRepository repository = new BallRepositoryImpl();
         repository.add(ballSecond);
         repository.add(ballFirst);
-        Comparator<BallIdentifiable> comparatorByYCoordinate = Mockito.mock(Comparator.class);
+        Comparator<BallIdentifiable> comparatorByYCoordinate = Mockito.mock(BallYCoordinateComparator.class);
         Mockito.when(comparatorByYCoordinate.compare(ballFirst, ballSecond)).thenReturn(-1);
         List<BallIdentifiable> expectedQuery = Arrays.asList(ballFirst, ballSecond);
 
@@ -146,7 +146,7 @@ public class BallRepositoryImplTest {
         BallRepository repository = new BallRepositoryImpl();
         repository.add(ballSecond);
         repository.add(ballFirst);
-        Comparator<BallIdentifiable> comparatorByZCoordinate = Mockito.mock(Comparator.class);
+        Comparator<BallIdentifiable> comparatorByZCoordinate = Mockito.mock(BallZCoordinateComparator.class);
         Mockito.when(comparatorByZCoordinate.compare(ballFirst, ballSecond)).thenReturn(-1);
         List<BallIdentifiable> expectedQuery = Arrays.asList(ballFirst, ballSecond);
 

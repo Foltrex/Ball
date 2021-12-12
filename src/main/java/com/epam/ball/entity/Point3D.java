@@ -13,6 +13,19 @@ public class Point3D {
         this.z = z;
     }
 
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -32,19 +45,6 @@ public class Point3D {
     @Override
     public int hashCode() {
         return Objects.hash(getX(), getY(), getZ());
-    }
-
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getZ() {
-        return z;
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.epam.ball.BallIdentifiable;
 import com.epam.ball.logic.Calculator;
 
 public class SurfaceAreaRangeSpecification implements Specification {
-    // TODO: recheck and why Integer in the example
     private final Double surfaceAreaMin;
     private final Double surfaceAreaMax;
     private final Calculator calculator;

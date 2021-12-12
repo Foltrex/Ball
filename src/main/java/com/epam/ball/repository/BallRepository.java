@@ -9,12 +9,9 @@ import java.util.List;
 public interface BallRepository {
 
     void add(BallIdentifiable ball);
-
     void delete(BallIdentifiable ball);
-
     void update(BallIdentifiable ball);
 
     List<BallIdentifiable> query(Specification specification);
-
     List<BallIdentifiable> sort(Comparator<BallIdentifiable> ball);
 }

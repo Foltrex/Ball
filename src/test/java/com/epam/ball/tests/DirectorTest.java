@@ -28,11 +28,12 @@ public class DirectorTest {
     public void testReadShouldReadWhenLinesCorrect() throws DataException {
         // given
         DataReader dataReader               = Mockito.mock(DataReader.class);
-        BallLineValidator ballLineValidator = Mockito.mock(BallLineValidator.class);
-        BallCreator ballCreator             = Mockito.mock(BallCreator.class);
-
         Mockito.when(dataReader.read(VALID_PATH)).thenReturn(Arrays.asList("1.0  2.0  3.0  4.0", "5.0  6.0  7.0  8.0"));
+
+        BallLineValidator ballLineValidator = Mockito.mock(BallLineValidator.class);
         Mockito.when(ballLineValidator.isValidLine(anyString())).thenReturn(true);
+
+        BallCreator ballCreator             = Mockito.mock(BallCreator.class);
         Mockito.when(ballCreator.create(anyString())).thenReturn(Optional.of(new Ball(new Point3D(1, 2, 3), 4)),
                                                                  Optional.of(new Ball(new Point3D(5, 6, 7), 8)));
 
@@ -60,11 +61,12 @@ public class DirectorTest {
     public void testReadShouldReadWhenSeveralLinesUncorrect() throws DataException {
         // given
         DataReader dataReader       = Mockito.mock(DataReader.class);
-        BallLineValidator ballLineValidator = Mockito.mock(BallLineValidator.class);
-        BallCreator ballCreator     = Mockito.mock(BallCreator.class);
-
         Mockito.when(dataReader.read(VALID_PATH)).thenReturn(Arrays.asList("1.0  2.0  3.0  4.0", "5.0sdf  asd  7e3.452.5  8.0"));
+
+        BallLineValidator ballLineValidator = Mockito.mock(BallLineValidator.class);
         Mockito.when(ballLineValidator.isValidLine(anyString())).thenReturn(true, false);
+
+        BallCreator ballCreator     = Mockito.mock(BallCreator.class);
         Mockito.when(ballCreator.create("1.0  2.0  3.0  4.0")).thenReturn(Optional.of(new Ball(new Point3D(1, 2, 3), 4)));
 
         Director director = new Director(dataReader, ballLineValidator, ballCreator);

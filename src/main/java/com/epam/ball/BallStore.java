@@ -10,7 +10,6 @@ public class BallStore implements Observer<BallIdentifiable> {
     private static BallStore instance;
 
     private final Map<Integer, Parameters> parameters = new HashMap<>();
-
     private final Calculator calculator = new Calculator();
 
     private BallStore() { }

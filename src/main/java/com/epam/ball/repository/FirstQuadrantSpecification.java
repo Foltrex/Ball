@@ -8,8 +8,9 @@ public class FirstQuadrantSpecification implements Specification {
     @Override
     public boolean specified(BallIdentifiable ball) {
         Point3D ballCenter = ball.getCenter();
-        return Plane.OXY.getDistanceTo(ballCenter) > ball.getRadius() &&
-                Plane.OXZ.getDistanceTo(ballCenter) > ball.getRadius() &&
-                Plane.OYZ.getDistanceTo(ballCenter) > ball.getRadius();
+
+        return Double.compare(ballCenter.getX(), ball.getRadius()) > 0 &&
+                Double.compare(ballCenter.getY(), ball.getRadius()) > 0 &&
+                Double.compare(ballCenter.getZ(), ball.getRadius()) > 0;
     }
 }

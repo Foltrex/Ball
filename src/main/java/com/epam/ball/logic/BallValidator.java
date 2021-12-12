@@ -8,7 +8,7 @@ public class BallValidator {
 
     public boolean isBall(Point3D center, double radius) {
         LOGGER.debug("Argument ball center: " + center + '\n' +
-                "Argument radius: " + radius);
-        return radius > 0;
+                     "Argument radius: " + radius);
+        return Double.compare(radius, 0) > 0;
     }
 }

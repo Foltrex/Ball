@@ -29,7 +29,8 @@ public class BallCreator {
 
         Point3D center = new Point3D(x, y, z);
 
-        if (radius > 0) {
+        BallValidator ballValidator = new BallValidator();
+        if (ballValidator.isBall(center, radius)) {
             Ball ball = new Ball(center, radius);
             logger.info("Created ball: " + ball);
             return Optional.of(ball);

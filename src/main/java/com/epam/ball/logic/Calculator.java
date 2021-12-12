@@ -74,7 +74,7 @@ public class Calculator {
         final Point3D ballCenter = ball.getCenter();
         final double radius = ball.getRadius();
 
-        return plane.getDistanceTo(ballCenter) <= radius;
+        return Double.compare(plane.getDistanceTo(ballCenter), radius) <= 0;
     }
 
     private final double EPSILON = 1e-6;

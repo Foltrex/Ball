@@ -42,10 +42,10 @@ public class CalculatorTest {
     public void  testCalculateSphericalSegmentVolumeShouldCalculateSphericalSegmentVolumeWhenBallValid() {
         // given
         Ball ball = new Ball(new Point3D(0, 0, 0), 6);
-        double h = 3;
+        double hight = 3;
 
         // when
-        double sphericalSegmentVolume = calculator.calculateSphericalSegmentVolume(ball, h);
+        double sphericalSegmentVolume = calculator.calculateSphericalSegmentVolume(ball, hight);
 
         // then
         Assert.assertEquals(141.371669, sphericalSegmentVolume, 1e-6);

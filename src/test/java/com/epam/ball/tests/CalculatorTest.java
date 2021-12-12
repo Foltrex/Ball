@@ -13,6 +13,8 @@ public class CalculatorTest {
     // given
     private final Calculator calculator = new Calculator();
 
+    private static final double ACCURACY = 1e-6;
+
 
     @Test
     public void testCalculateSurfaceAreaShouldCalculateSurfaceAreaWhenBallValid() {
@@ -23,7 +25,7 @@ public class CalculatorTest {
         double surfaceArea = calculator.calculateSurfaceArea(ball);
 
         // then
-        Assert.assertEquals(50.265482, surfaceArea, 1e-6);
+        Assert.assertEquals(50.265482, surfaceArea, ACCURACY);
     }
 
     @Test
@@ -35,7 +37,7 @@ public class CalculatorTest {
         double volume = calculator.calculateVolume(ball);
 
         // then
-        Assert.assertEquals(33.510321, volume, 1e-6);
+        Assert.assertEquals(33.510321, volume, ACCURACY);
     }
 
     @Test
@@ -48,7 +50,7 @@ public class CalculatorTest {
         double sphericalSegmentVolume = calculator.calculateSphericalSegmentVolume(ball, hight);
 
         // then
-        Assert.assertEquals(141.371669, sphericalSegmentVolume, 1e-6);
+        Assert.assertEquals(141.371669, sphericalSegmentVolume, ACCURACY);
     }
 
     @Test
@@ -61,7 +63,7 @@ public class CalculatorTest {
         double volumeRatio = calculator.calculateVolumeRatio(ball, Plane.OXY);
 
         // then
-        Assert.assertEquals(0.185185, volumeRatio, 1e-6);
+        Assert.assertEquals(0.185185, volumeRatio, ACCURACY);
     }
 
     @Test(expected = BallNotCrossPlaneException.class)

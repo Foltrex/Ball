@@ -8,10 +8,10 @@ import java.util.Optional;
 import java.util.StringTokenizer;
 
 public class BallCreator {
-    private static final Logger logger = Logger.getLogger(BallCreator.class);
+    private static final Logger LOGGER = Logger.getLogger(BallCreator.class);
 
     public Optional<Ball> create(String line) {
-        logger.debug("Argument line: " + line);
+        LOGGER.debug("Argument line: " + line);
 
         StringTokenizer stringTokenizer = new StringTokenizer(line);
 
@@ -32,10 +32,10 @@ public class BallCreator {
         BallValidator ballValidator = new BallValidator();
         if (ballValidator.isBall(center, radius)) {
             Ball ball = new Ball(center, radius);
-            logger.info("Created ball: " + ball);
+            LOGGER.info("Created ball: " + ball);
             return Optional.of(ball);
         } else {
-            logger.warn("Negative radius: " + radius);
+            LOGGER.warn("Negative radius: " + radius);
             return Optional.empty();
         }
     }

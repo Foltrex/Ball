@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 public class Calculator {
     private static final Logger LOGGER = Logger.getLogger(Calculator.class);
 
+    private static final double EPSILON = 1e-6;
+
     public double calculateSurfaceArea(Ball ball) {
         LOGGER.debug("Argument ball: " + ball);
         final double radius = ball.getRadius();
@@ -27,7 +29,7 @@ public class Calculator {
         return hight * hight * (3 * radius - hight) / 3 * Math.PI;
     }
 
-    /**
+    /*
      * we must specify the plane specifically,
      * because the ball can intersect several axes at once
      */
@@ -42,7 +44,7 @@ public class Calculator {
         final double radius = ball.getRadius();
         final Point3D ballCenter = ball.getCenter();
 
-        final double hight = Math.abs(radius - plane.getDistanceTo(ballCenter));
+        final double hight = Math.abs(radius - plane.calculateDistanceTo(ballCenter));
 
         double firstSphericalSegmentVolume = calculateSphericalSegmentVolume(ball, hight);
         double secondSphericalSegmentVolume = calculateVolume(ball) - firstSphericalSegmentVolume;
@@ -74,10 +76,9 @@ public class Calculator {
         final Point3D ballCenter = ball.getCenter();
         final double radius = ball.getRadius();
 
-        return Double.compare(plane.getDistanceTo(ballCenter), radius) <= 0;
+        return Double.compare(plane.calculateDistanceTo(ballCenter), radius) <= 0;
     }
 
-    private final double EPSILON = 1e-6;
     private boolean isEqual(double x, double y) {
         return (x - y) < EPSILON;
     }

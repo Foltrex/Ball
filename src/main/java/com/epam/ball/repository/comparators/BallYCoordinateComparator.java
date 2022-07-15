@@ -12,9 +12,6 @@ public class BallYCoordinateComparator implements Comparator<BallIdentifiable> {
     public int compare(BallIdentifiable first, BallIdentifiable second) {
         Point3D firstBallCenter = first.getCenter();
         Point3D secondBallCenter = second.getCenter();
-
-        double firstYCenterCoordinate = firstBallCenter.getY();
-        double secondYCenterCoordinate = secondBallCenter.getY();
-        return Double.compare(firstYCenterCoordinate, secondYCenterCoordinate);
+        return Double.compare(firstBallCenter.getY(), secondBallCenter.getY());
     }
 }

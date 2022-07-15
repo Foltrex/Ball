@@ -17,7 +17,7 @@ public class SurfaceAreaRangeSpecification implements Specification {
     @Override
     public boolean specified(BallIdentifiable ball) {
 
-        Double surfaceArea = calculator.calculateSurfaceArea(ball);
+        double surfaceArea = calculator.calculateSurfaceArea(ball);
         return Double.compare(surfaceArea, surfaceAreaMin) > 0 && Double.compare(surfaceArea, surfaceAreaMax)  < 0;
     }
 }

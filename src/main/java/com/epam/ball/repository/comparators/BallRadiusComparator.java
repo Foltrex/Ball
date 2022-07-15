@@ -9,8 +9,6 @@ public class BallRadiusComparator implements Comparator<BallIdentifiable> {
 
     @Override
     public int compare(BallIdentifiable first, BallIdentifiable second) {
-        double firstBallRadius = first.getRadius();
-        double secondBallRadius = second.getRadius();
-        return Double.compare(firstBallRadius, secondBallRadius);
+        return Double.compare(first.getRadius(), second.getRadius());
     }
 }

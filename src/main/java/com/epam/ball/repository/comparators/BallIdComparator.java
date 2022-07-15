@@ -9,7 +9,6 @@ public class BallIdComparator implements Comparator<BallIdentifiable> {
     @Override
     public int compare(BallIdentifiable firstBall, BallIdentifiable secondBall) {
         Integer firstBallId = firstBall.getId();
-        Integer secondBallId = secondBall.getId();
-        return firstBallId.compareTo(secondBallId);
+        return firstBallId.compareTo(secondBall.getId());
     }
 }
